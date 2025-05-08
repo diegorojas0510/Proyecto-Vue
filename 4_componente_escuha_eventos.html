@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Página Web</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<div id="app"></div>
+<script>
+    const vm = Vue.createApp({
+        data() {
+            return {
+                counter: 0,
+                showmessage: false
+            }
+        },
+        methods: {
+            increment() {
+                this.counter++;
+                if (this.counter == 1) {
+                    this.showmessage = true;
+                }
+                console.log("showmessage: " + this.showmessage + " increment: " + this.counter);
+            }
+        },
+        template: `<button v-on:click="increment">{{ counter }}</button>`,
+    }).mount("#app");
+    console.log(vm);
+
+</script>
+</body>
+</html>

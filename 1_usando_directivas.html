@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Directivas</title>
+</head>
+<body>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<div id="app"></div> <!--Quitamos la variable text y la vamos a usar en nuestro template-->
+<script>
+    const vm = Vue.createApp({
+        data() {
+            return {
+                text: "<p>Directivas desde Vue</p>", // esto seria una mala practica si se usa en los imput que tengan que ver con
+                // usuarios dado a que se puede inyectar codigo malicioso que podria dañar nuestra app
+            }
+        },
+        template: `<div v-html="text"></div>`,
+        //template: `<div v-once v-text="text_one"></div>`
+        // utilizamos el v-once como directiva para quemar el texto y este no se actualice
+        // Creamos una plantilla de texto basandonos en la directiva de vue v-text
+        // ya no pasamos el texto en la etiqueta de html si no que directamente  en un template individual
+       // las directivas son atributos que vamos a poder agregar o extienden el html que le agregan cierta funcionalidad a nuestro
+      // componente se puede usar cualquier tag de html
+    }).mount("#app");
+</script>
+
+
+</body>
+</html>
+
+
+
