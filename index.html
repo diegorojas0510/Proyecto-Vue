@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Página Web</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+<!-- AQUI LE PASAMOS AL HTML NUESTRO OBJETO TEXT-->
+<div id="app">{{ text }}</div>
+<script>
+    const vm = Vue.createApp({ //Nos permite crear una instancia de Vue
+        data() { // esto es una función que devuelve un objeto tipo json
+            return { // devuelve un objeto
+                text: "Hola, Vue.js!" // propiedad text
+            }
+        },
+    }).mount("#app"); // montar sobre el elemento del id app
+    console.log(vm);
+
+</script>
+</body>
+</html>
