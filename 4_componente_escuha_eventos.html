@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi Página Web</title>
-    <link rel="stylesheet" href="style.css">
+    <!--link rel="stylesheet" href="style.css"-->
 </head>
 <body>
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
@@ -13,23 +13,68 @@
     const vm = Vue.createApp({
         data() {
             return {
-                counter: 0,
-                showmessage: false
-            }
+                counter_positive: 0, // Contador para incrementos
+                counter_negative: 0, // Contador para decrementos
+                showmessage: false, // Controla la visibilidad del cuadro
+            };
         },
         methods: {
-            increment() {
-                this.counter++;
-                if (this.counter == 1) {
-                    this.showmessage = true;
+            incrementPositive() {
+
+                if (this.counter_negative > 0){
+                    this.counter_negative--;
                 }
-                console.log("showmessage: " + this.showmessage + " increment: " + this.counter);
-            }
+                this.counter_positive++; // Incrementa el contador positivo
+                this.showmessage = true; // Muestra el cuadro
+                console.log("Incrementar positivo: " + this.counter_positive);
+            },
+            decrementPositiveAndIncrementNegative() {
+                if (this.counter_positive > 0) {
+                    this.counter_positive--; // Disminuye el contador positivo si es mayor que 0
+                }
+                this.counter_negative++; // Incrementa el contador negativo
+                if (this.counter_positive === 0) {
+                    this.showmessage = false; // Oculta el cuadro si el contador positivo es 0
+                }
+                console.log("Decrementar positivo: " + this.counter_positive + ", Incrementar negativo: " + this.counter_negative);
+            },
         },
-        template: `<button v-on:click="increment">{{ counter }}</button>`,
+        computed: {
+            currentColor() { // Propiedad computada para el color del cuadro
+                const colors = ['red', 'blue', 'green', 'orange', 'purple'];
+                return colors[this.counter_positive % colors.length];
+            },
+            textColor() { // Propiedad computada para el color del texto
+                const darkColors = ['blue', 'purple'];
+                return darkColors.includes(this.currentColor) ? 'white' : 'black';
+            },
+        },
+        template: `
+          <div>
+            <button v-on:click="incrementPositive">
+              Incrementar Positivo: {{ counter_positive }}
+            </button>
+            <br><br>
+            <button v-on:click="decrementPositiveAndIncrementNegative">
+              Disminuir Positivo e Incrementar Negativo: {{ counter_negative }}
+            </button>
+            <div v-if="showmessage"
+                 :style="{
+       width: '100px',
+       height: '100px',
+       backgroundColor: currentColor,
+       color: textColor,
+       marginTop: '10px',
+       display: 'flex',
+       alignItems: 'center',
+       justifyContent: 'center'
+     }">
+              Caja
+            </div>
+          </div>
+        `,
     }).mount("#app");
     console.log(vm);
-
 </script>
 </body>
 </html>
