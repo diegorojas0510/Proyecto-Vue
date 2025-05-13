@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<!-- Este script carga la versión global de Vue.js 3 desde el CDN (Content Delivery Network) de unpkg. Es un archivo JavaScript que incluye todas las funcionalidades principales del framework Vue.js.
+Este define un objeto global llamdo vue-->
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 <!-- AQUI LE PASAMOS AL HTML NUESTRO OBJETO TEXT-->
 <div id="app">{{ text }}</div>
@@ -19,7 +21,6 @@
         },
     }).mount("#app"); // montar sobre el elemento del id app
     console.log(vm); // imprimir el objeto vm en la consola del navegador
-
 </script>
 </body>
 </html>

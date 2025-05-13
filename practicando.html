@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Formulario Mejorado</title>
+    <style>
+        /* Estilos para el formulario */
+        .formulario {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        /* Estilo para las etiquetas y campos */
+        .formulario label {
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .formulario input {
+            padding: 5px;
+            margin-right: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        /* Estilo para el resultado */
+        .resultado {
+            margin-top: 15px;
+            font-size: 1.2em;
+            color: #333;
+        }
+
+        /* Contenedor para alinear los inputs en una fila */
+        .input-row {
+            display: flex;
+            align-items: center;
+            gap: 8px; /* Espaciado entre elementos */
+        }
+    </style>
+</head>
+<body>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<div id="app" class="formulario">
+    <h2>Formulario (v-model):</h2>
+    <div class="input-row">
+        <label for="name">Nombre:</label>
+        <input id="name" v-model="name" placeholder="Escribe tu nombre">
+        <label for="lastName">Apellido:</label>
+        <input id="lastName" v-model="lastName" placeholder="Escribe tu apellido">
+    </div>
+    <p class="resultado">Usted se llama: {{ name }} {{ lastName }}</p>
+</div>
+<script>
+    const app = Vue.createApp({
+        data() {
+            return {
+                name: '',
+                lastName: ''
+            };
+        },
+    });
+
+    app.mount('#app');
+</script>
+</body>
+</html>

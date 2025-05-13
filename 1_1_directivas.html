@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue.js Directivas - Ejemplo</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        .active {
+            color: green;
+            font-weight: bold;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <!-- Directiva v-if -->
+    <h1 v-if="showMessage">¡Hola Mundo 1! (Directiva v-if que evalua una condición)</h1>
+    <h1 v-else>¡Hola Mundo 2! (Direciva v-else si la condición no se cumple seria 2)</h1>
+    <!--Directiva abrevida para v-on:click dejamos solo @click para escuchar el evento-->
+    <button @click="toggleMessage">Cambiar Mensaje (v-if/v-else)</button>
+
+    <!-- Directiva v-for -->
+    <h2>Lista de Elementos (v-for):</h2>
+    <ul>
+        <li v-for="(item, index) in items"> <!--item: valor de cada elemento, index: pocisión-->
+            {{ index + 1 }}. {{ item }}
+        </li>
+    </ul>
+    <button @click="cambiarElemento">Cambiar el segundo elemento</button>
+
+    <!-- Directiva v-bind -->
+    <h2>Enlace dinámico (v-bind) : Se puede utilizar el atajo con :href</h2>
+    <a :href="dynamicUrl" target="_blank">Ir a Vue.js</a>
+
+    <!-- Directiva v-model -->
+    <h2>Formulario (v-model):</h2>
+    <label for="name">Nombre:</label>
+    <input id="name" v-model="name" placeholder="Escribe tu nombre">
+    <p>Hola, {{ name }}</p>
+
+    <!-- Directiva v-show -->
+    <h2 v-show="isVisible">Esto es visible con v-show</h2>
+    <button @click="toggleVisibility">Mostrar/Ocultar (v-show)</button>
+
+    <!-- Directiva de clases dinámicas -->
+    <h2 :class="{ active: isActive, error: hasError }">Texto con Clases Dinámicas (v-bind:class)</h2>
+    <button @click="toggleClass">Cambiar Clase</button>
+
+    <!-- Directiva de estilos dinámicos -->
+    <h2 :style="dynamicStyle">Texto con Estilos Dinámicos (v-bind:style)</h2>
+    <button @click="changeStyle">Cambiar Estilo</button>
+</div>
+
+<script>
+    const app = Vue.createApp({
+        data() {
+            return {
+                showMessage: true,
+                items: ['Manzana', 'Banana', 'Pera' , 'Uva'],
+                dynamicUrl: 'https://vuejs.org',
+                name: '',
+                isVisible: true,
+                isActive: false,
+                hasError: false,
+                dynamicStyle: {
+                    color: 'blue',
+                    fontSize: '20px'
+                }
+            };
+        },
+        methods: {
+            toggleMessage() {
+                this.showMessage = !this.showMessage; //negar para pasar a falso
+            },
+            toggleVisibility() {
+                this.isVisible = !this.isVisible;
+            },
+            toggleClass() {
+                this.isActive = !this.isActive;
+                this.hasError = !this.hasError;
+            },
+            changeStyle() {
+                this.dynamicStyle.color = this.dynamicStyle.color === 'blue' ? 'purple' : 'blue';
+                this.dynamicStyle.fontSize = this.dynamicStyle.fontSize === '20px' ? '25px' : '20px';
+            },
+            cambiarElemento() {
+                // Buscar el índice del elemento "Banana"
+                const index = this.items.findIndex(item => item === 'Banana');
+                if (index !== -1) {
+                    // Cambiar el valor si existe
+                    this.items[index] = 'Pera';
+                }
+            }
+        }
+    });
+
+    app.mount('#app');
+</script>
+</body>
+</html>

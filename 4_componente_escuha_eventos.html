@@ -21,7 +21,7 @@
         methods: {
             incrementPositive() {
 
-                if (this.counter_negative > 0){
+                if (this.counter_negative > 0) {
                     this.counter_negative--;
                 }
                 this.counter_positive++; // Incrementa el contador positivo
@@ -60,16 +60,16 @@
             </button>
             <div v-if="showmessage"
                  :style="{
-       width: '100px',
-       height: '100px',
-       backgroundColor: currentColor,
-       color: textColor,
-       marginTop: '10px',
-       display: 'flex',
-       alignItems: 'center',
-       justifyContent: 'center'
-     }">
-              Caja
+                           width: '1000px',
+                           height: '100px',
+                           backgroundColor: currentColor,
+                           color: textColor,
+                           marginTop: '10px',
+                           display: 'flex',
+                           alignItems: 'center',
+                           justifyContent: 'center'
+                 }">
+              Cambio
             </div>
           </div>
         `,

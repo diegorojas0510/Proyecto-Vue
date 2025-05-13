@@ -16,8 +16,9 @@
                 // usuarios dado a que se puede inyectar codigo malicioso que podria dañar nuestra app
             }
         },
-        template: `<div v-html="text"></div>`,
+        template: `<div v-html="text"></div>`, // vemos nuestra directiva que inicia con v-seguida del comportamiento que necesitemos dinamicamente
         //template: `<div v-once v-text="text_one"></div>`
+        // template: `<a v-bind:href="url">Ir al enlace</a>`
         // utilizamos el v-once como directiva para quemar el texto y este no se actualice
         // Creamos una plantilla de texto basandonos en la directiva de vue v-text
         // ya no pasamos el texto en la etiqueta de html si no que directamente  en un template individual
