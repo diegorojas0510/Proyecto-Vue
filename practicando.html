@@ -37,6 +37,13 @@
             align-items: center;
             gap: 8px; /* Espaciado entre elementos */
         }
+
+        /* Estilo para el mensaje de error */
+        .error {
+            color: red;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
     </style>
 </head>
 <body>
@@ -46,6 +53,7 @@
     <div class="input-row">
         <label for="name">Nombre:</label>
         <input id="name" v-model="name" placeholder="Escribe tu nombre">
+        <p v-if="error_name()" class="error">{{ error_name() }}</p>
         <label for="lastName">Apellido:</label>
         <input id="lastName" v-model="lastName" placeholder="Escribe tu apellido">
     </div>
@@ -59,6 +67,17 @@
                 lastName: ''
             };
         },
+        methods: {
+            error_name() {
+                if (this.name.trim() === ''){
+                    return null;
+                }
+                if (this.name.length < 3 ) {
+                    return 'El nombre debe tener al menos 3 caracteres';
+                }
+                return null;
+            }
+        }
     });
 
     app.mount('#app');
