@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+</head>
+<body>
+<div id="app"></div>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script>
+    const vm = Vue.createApp({
+        data() {
+            return {
+                text: "Hola Diego!"
+            };
+        },
+        // con la directiva v-model no necesitamos este methods solo en algunos casos que se necesite alterar los resultados cambios deletra ejemplo mayúsculas
+        methods: {
+            input(e) {
+                this.text = e.target.value;
+            },
+           // mayusText(event) {
+                //this.text = event.target.value.toUpperCase(); // para minusculas toLowerCase
+            //}//
+        },
+        template: `
+        <p>{{ text }}</p>
+        <input
+            type="text"
+            v-on:input="input"
+            v-bind:value="text"
+        />
+        `
+        // para llamar al metodo cuando uso la directiva v-model
+        //Otra forma de simplificar las directivas de vue es para los atributos con un :value="text" y otra los eventos con un @input="text" estos son alias para cadad una de ellas para no repetir código
+        //podemo sincronizar nuestra vista con el modelo con la directiva v-model y permite ahora usar el código más corto. v-model="text" variable reactiva
+    }).mount("#app")
+</script>
+</body>
+</html>

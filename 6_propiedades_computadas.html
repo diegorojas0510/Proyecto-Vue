@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+</head>
+<body>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<div id="app"></div>
+<script>
+    const vm = Vue.createApp({
+        data() {
+            return {
+               firstName: 'Diego',
+               lastName: 'Rojas',
+                now: new Date()
+            };
+        },
+        computed: {
+          fullName() {
+              return this.firstName + " " + this.lastName
+          },
+            today(){
+              return this.now.toLocaleDateString()
+            }
+        },
+        template:
+        `<div>
+          <div>{{ firstName }}</div>
+          <div>{{ lastName }}</div>
+          <div>{{ now }}</div>
+          <div>{{ fullName }}</div>
+          <div>{{ today }}</div>
+        </div>`
+        /*Que pasa si tenemos que ingresar mucha logica de JS se peude volver inmanejable el template y no es donde deberia de ir por eso se cran las propiedades computables
+            ejemplo quisieramos concatenar nombre + apellido pero tambien la fecha la quisieramos parsear para mostrar de manera mas presentable
+        */
+    }).mount("#app")
+</script>
+</body>
+</html>
